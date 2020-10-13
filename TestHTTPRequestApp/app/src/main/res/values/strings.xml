@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Optimax Location Service </string>
+    <string name="channel_name">364</string>
+    <string name="channel_description">Tracking location</string>
+</resources>
