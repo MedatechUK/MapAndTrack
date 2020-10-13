@@ -1,0 +1,36 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#map{
+  min-width: 100vh;
+  min-height: 100vh;
+}
+/*
+
+.button{
+  background: #ff911e;
+  border: #ff7700;
+}
+
+.button:hover{
+  background: #ff7700;
+  border: #ff7700;
+}
+
+.button:focus{
+  background: #ff7700;
+  border: #ff7700;
+}
+
+.button:active{
+  background: #ff7700;
+  border: #ff7700;
+}
+*/
