@@ -107,252 +107,6 @@
         }
     }
 
-   /* var map;
-    var allServiceMarkers = [];
-    var allEngineerMarkers = [];
-    var engineersData = {
-        "value": [
-            {
-                "USERLOGIN": "100001",
-                "USERDES": "Paul.Barnett",
-                "ADDRESS": "Address line 1",
-                "ADDRESS2": "Address Line 2",
-                "CITY": "City",
-                "ZIP": "CA3 8PY",
-                "CURRENTJOBSV": "SV200044",
-                "SVNUM": "SV200044",
-                "STATDES": "Online",
-                "GPSX": null,
-                "GPSX": null,
-                "GPSHOMEX": null,
-                "GPSHOMEY": null,
-                "SKILL": "S&C",
-                "COLOUR":"#acff09"
-
-            },{
-                "USERLOGIN": "100034",
-                "USERDES": "fode",
-                "ADDRESS": "Address line 1",
-                "ADDRESS2": "Address Line 2",
-                "CITY": "City",
-                "ZIP": "CA3 8PY",
-                "CURRENTJOBSV": "SV200044",
-                "SVNUM": "SV200044",
-                "STATDES": "Online",
-                "GPSX": null,
-                "GPSX": null,
-                "GPSHOMEX": null,
-                "GPSHOMEY": null,
-                "SKILL": "S&C",
-                "COLOUR":"#ff4e04"
-
-            }, {
-                "USERLOGIN": "100002",
-                "USERDES": "ApiUser",
-                "ADDRESS": "Address line 1",
-                "ADDRESS2": "Address Line 2",
-                "CITY": "City",
-                "ZIP": "CA3 8PY",
-                "CURRENTJOBSV": "SV200044",
-                "SVNUM": "SV200044",
-                "STATDES": "Online",
-                "GPSX": null,
-                "GPSX": null,
-                "GPSHOMEX": null,
-                "GPSHOMEY": null,
-                "SKILL": "S&C",
-                "COLOUR":"#e2e015"
-            },
-            {
-                "USERLOGIN": "100003",
-                "USERDES": "neil",
-                "ADDRESS": "Address line 1",
-                "ADDRESS2": "Address Line 2",
-                "CITY": "City",
-                "ZIP": "CA3 8PY",
-                "CURRENTJOBSV": "SV200044",
-                "SVNUM": "SV200044",
-                "STATDES": "Online",
-                "GPSX": null,
-                "GPSX": null,
-                "GPSHOMEX": null,
-                "GPSHOMEY": null,
-                "SKILL": "Service",
-                "COLOUR":"#15d9cf"            },
-            {
-                "USERLOGIN": "100004",
-                "USERDES": "james",
-                "ADDRESS": "Address line 1",
-                "ADDRESS2": "Address Line 2",
-                "CITY": "City",
-                "ZIP": "CA3 8PY",
-                "CURRENTJOBSV": "SV200044",
-                "SVNUM": "SV200044",
-                "STATDES": "Offline",
-                "GPSX": null,
-                "GPSX": null,
-                "GPSHOMEX": null,
-                "GPSHOMEY": null,
-                "SKILL": "S&C",
-                "COLOUR":"#231ced"
-            },
-            {
-                "CUSTNAME": "100005",
-                "USERDES": "Ben",
-                "ADDRESS": "Address line 1",
-                "ADDRESS2": "Address Line 2",
-                "CITY": "City",
-                "ZIP": "CA3 8PY",
-                "CURRENTJOBSV": "SV200044",
-                "SVNUM": "SV200044",
-                "STATDES": "Offline",
-                "GPSX": null,
-                "GPSX": null,
-                "GPSHOMEX": null,
-                "GPSHOMEY": null,
-                "SKILL": "Calab",
-                "COLOUR":"#de1518"
-            }]
-    }
-    var serviceVisits = [];
-
-    var engineers = []
-    var uniqueStatus = [];
-    var uniqueServiceVisitsIds = [];
-    var uniqueCompanyIds = []
-    var companyMarkers = []
-    var uniqueSkills = [];
-    var dateSearch = {
-        endDate: null,
-        startDate: null
-    };
-    var filterEnabled = false;
-    var customerFilterOption = {
-        statuss: [],
-        services: [],
-        engineers: [],
-        customer: "",
-        dates: {
-            start: new Date("01/01/2000"),
-            end: new Date("01/01/3000"),
-        }
-    }
-    var filterServiceType = "";
-    var filterCompanyName = "";
-    var filterServiceMarkers = [];
-    var tmpFilter = [];
-    var pollyLines = [];
-    let currentEngineer = {
-        username: "",
-        position :{},
-    };
-    let currentCompany = {
-        customerName: "",
-        position :{},
-    };
-    //var
-
-
-    for (const e in engineersData['value']) {
-        engineers.push(new Engineers(engineersData['value'][e]));
-    }
-
-    for (const sv in data['value']) {
-//      console.log(data['value'][sv]);
-        if (uniqueServiceVisitsIds.length > 0 && uniqueServiceVisitsIds.includes(data['value'][sv].SVNUM)) {
-            for (let i = 0; i < serviceVisits.length; i++) {
-                if (serviceVisits[i].svnumber === data['value'][sv].SVNUM) {
-                    serviceVisits[i].addEngineer(data['value'][sv].USERLOGIN)
-                    serviceVisits[i].addPart(data['value'][sv].PART)
-                    serviceVisits[i].addSkill(data['value'][sv].PART)
-                    serviceVisits[i].addService(data['value'][sv].MAINTDES)
-                    if (!(uniqueSkills.includes(data['value'][sv].MAINTDES)) && data['value'][sv].MAINTDES !== null) {
-                        uniqueSkills.push(data['value'][sv].MAINTDES)
-                    }
-                }
-            }
-        } else {
-            let nSV = new ServiceVisit(data['value'][sv])
-            serviceVisits.push(nSV);
-            uniqueServiceVisitsIds.push(data['value'][sv].SVNUM)
-        }
-        if (!(uniqueStatus.includes(data['value'][sv].STATDES) && data['value'][sv].STATDES !== undefined)) {
-            uniqueStatus.push(data['value'][sv].STATDES.toString());
-        }
-        if (!(uniqueCompanyIds.includes(data['value'][sv].CUSTNAME))) {
-            uniqueCompanyIds.push(data['value'][sv].CUSTNAME.toString());
-        }
-
-    }
-
-    function changeMarkerLabels() {
-        var zoom = map.getZoom();
-        if (zoom > 10) {
-            for (const sm in allServiceMarkers) {
-                allServiceMarkers[sm].setMap(null);
-                allServiceMarkers[sm].label = allServiceMarkers[sm].time.toString();
-                if(!filterEnabled) allServiceMarkers[sm].setMap(map);
-            }
-            if(filterEnabled){
-              customerFilter();
-            }
-            return;
-        } else {
-            for (const sm in allServiceMarkers) {
-                allServiceMarkers[sm].setMap(null);
-                allServiceMarkers[sm].label = "";
-                if(!filterEnabled) allServiceMarkers[sm].setMap(map);
-            }
-          if(filterEnabled){
-            customerFilter();
-          }
-          return;
-        }
-
-    }
-
-    function removePollyLines(){
-        for(const p in pollyLines){
-            pollyLines[p].setMap(null)
-        }
-        pollyLines = [];
-    }
-
-    function setPollyLines(user = "all"){
-        removePollyLines();
-        for (const em in allEngineerMarkers) {
-            for(const sm in allServiceMarkers){
-                if(allEngineerMarkers[em].currentjob === allServiceMarkers[sm].svnumber && allEngineerMarkers[em].username === allServiceMarkers[sm].username){
-
-                    let route = [
-                        allServiceMarkers[sm].position,
-                        allEngineerMarkers[em].position
-                    ]
-                    var pollyLine = new google.maps.Polyline({
-                        path: route,
-                        geodesic: true,
-                        strokeColor: allEngineerMarkers[em].color,
-                        strokeOpacity: 1.0,
-                        strokeWeight: 2
-                    });
-
-                    if(user === "all") {
-                        pollyLines.push(pollyLine)
-                        pollyLine.setMap(map);
-                        break;
-                    }else{
-                        if(user === allEngineerMarkers[em].username){
-                            pollyLines.push(pollyLine)
-                            pollyLine.setMap(map);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-*/
 
    //function for if we are zoomed enough and need to change the marker labels
     var zoomed = false;
@@ -473,9 +227,13 @@
         }; */
 
         for(const sc in scTmpData) {
-            console.log(scTmpData[sc]);
-            serviceCallList.push(new ServiceCallsClass(scTmpData[sc]));    
-        }
+            console.log(scTmpData[sc]);            
+            var call = new ServiceCallsClass(scTmpData[sc]);
+            if(!(dup.includes(call.zip.concat(call.startDate))){
+                serviceCallList.push(call); 
+                dup.push(call.zip.concat(call.startDate));   
+            }
+        };
 
         //once we have the service calls we can start processing the data
         for(const sc in serviceCallList){
@@ -487,7 +245,7 @@
             //create the marker for the service call
             serviceCallList[sc].createMarker();
 
-            //Add service call to engineers job list will be place in the "todayJobs" or "allJobs" array heled in the engineers object
+            //Add service call to engineers job list will be place in the "todayJobs" or "allJobs" array held in the engineers object
             for(const e in userSkillList){
                 if (serviceCallList[sc].engineer.includes(userSkillList[e].username)) {
                     userSkillList[e].addJob(serviceCallList[sc])
@@ -495,7 +253,7 @@
             }
         }
 
-    //SORT DATE TIMES
+        //SORT DATE TIMES
         for(const e in userSkillList){
             userSkillList[e].todayJobs.sort(function (a, b) {
                 var c = new Date(a.startDate);
