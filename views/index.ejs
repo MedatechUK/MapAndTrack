@@ -459,13 +459,23 @@
         //console.log("NEW SV", newSV);
         
 
-        //process all the service calls into an object
-        //process all the service calls into an object
+        /* process all the service calls into an object
+        var dup = [];
+        for(const sc in scTmpData) {
+            console.log(scTmpData[sc]);            
+            var call = new ServiceCallsClass(scTmpData[sc]);
+            if ((call.startDate!=null) && (call.zip!=null)) {            
+                if(!(dup.includes(call.zip.concat(call.startDate)))){
+                    serviceCallList.push(call); 
+                    dup.push(call.zip.concat(call.startDate));   
+                };
+            };
+        }; */
+
         for(const sc in scTmpData) {
             console.log(scTmpData[sc]);
             serviceCallList.push(new ServiceCallsClass(scTmpData[sc]));    
         }
-
 
         //once we have the service calls we can start processing the data
         for(const sc in serviceCallList){
@@ -547,7 +557,7 @@
 </script>
 <script
         async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGFj4DLa5doO2CasWcPh11T06k3Zd6tuQ&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCniAiZ8sDYVo-XbJGbbTfh8Hhw4UX1ZpA&callback=initMap">
 </script>
 
 </body>

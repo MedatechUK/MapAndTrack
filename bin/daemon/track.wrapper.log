@@ -1,0 +1,17 @@
+2020-11-08 12:41:47 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\medatech.outform\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file C:\Users\medatech.outform\node\optimax-map\bin\www --scriptoptions= --log "TRACK wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-11-08 12:41:47 - Started 3352
+2020-11-16 12:24:21 - Stopping track.exe
+2020-11-16 12:24:21 - ProcessKill 3352
+2020-11-16 12:24:22 - Shutdown exception
+Message:A system shutdown is in progress. (Exception from HRESULT: 0x8007045B)
+Stacktrace:   at System.Runtime.InteropServices.Marshal.ThrowExceptionForHRInternal(Int32 errorCode, IntPtr errorInfo)
+   at System.Management.ManagementScope.InitializeGuts(Object o)
+   at System.Management.ManagementScope.Initialize()
+   at System.Management.ManagementObjectSearcher.Initialize()
+   at System.Management.ManagementObjectSearcher.Get()
+   at winsw.WrapperService.GetChildPids(Int32 pid)
+   at winsw.WrapperService.StopProcessAndChildren(Int32 pid)
+   at winsw.WrapperService.StopIt()
+   at winsw.WrapperService.OnShutdown()
+2020-11-16 12:27:20 - Starting C:\Program Files\nodejs\node.exe  --harmony C:\Users\medatech.outform\AppData\Roaming\npm\node_modules\node-windows\lib\wrapper.js --file C:\Users\medatech.outform\node\optimax-map\bin\www --scriptoptions= --log "TRACK wrapper" --grow 0.25 --wait 1 --maxrestarts 3 --abortonerror n --stopparentfirst undefined
+2020-11-16 12:27:20 - Started 3236
